@@ -1,0 +1,15 @@
+.main-content {
+    margin: 0 auto;
+    display: block;
+    padding: 1rem;
+    max-width: 650px;
+    text-align: center;
+    background-color: gray;
+    border: 1px solid black;
+}
+#survey-btn {
+    height: 50px;
+}
+.question {
+    text-align: left;
+}

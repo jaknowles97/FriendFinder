@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VG Friends</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="main-content">
+        <form>
+            <h3 class="question">1. I tend to enjoy online multiplayer Games over offline story driven games.</h3>
+            <select id="dropdown-1">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">2. I usually play on a console, not a pc.</h3>
+            <select id="dropdown-2">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>   <!-- Clearly the superior choice. -->
+            </select>
+
+            <h3 class="question">3. I love games that require lots and lots of grinding.</h3>
+            <select id="dropdown-3">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">4. I like compettive games (fighting games, PvP, etc.)</h3>
+            <select id="dropdown-4">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">5. I like team based games and I'm Looking for people to que up with.</h3>
+            <select id="dropdown-5">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">6. I don't take games to serious, I just play for fun.</h3>
+            <select id="dropdown-6">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">7. I don't play games that are geared towards children. I don't care for Nintendo much.</h3>
+            <select id="dropdown-7">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">8. I spend 10 or more hours in a week playing video games</h3>
+            <select id="dropdown-8">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">9. I really enjoy racing games.</h3>
+            <select id="dropdown-9">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+
+            <h3 class="question">10. I love video game lore/history.</h3>
+            <select id="dropdown-10">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br><br>
+            <button type="submit" id="submit"> friend</button>
+        </form>
+    </main>
+
+    <script type="text/javascript">
+        document.getElementById("submit").addEventListener("click", function(event) {
+            event.preventDefault()
+            var answers = [];
+            for(var i=1; i < 11; i++) {
+                var id = "dropdown-"+i;
+                var answerSet = document.getElementById(id);
+                answers.push(answerSet.options[answerSet.selectedIndex].value);
+            }
+            console.log(answers);
+        })
+    </script>
+</body>
+</html>
