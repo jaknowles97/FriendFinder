@@ -114,7 +114,15 @@
                 answers.push(answerSet.options[answerSet.selectedIndex].value);
             }
             console.log(answers);
-        })
+        });
+
+        var httpRequest = new XMLHttpRequest()
+        httpRequest.onreadystatechange = function (data) {
+        // code
+        }
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        httpRequest.open('POST', "/api/friends")
+        httpRequest.send(answers)
     </script>
 </body>
 </html>
