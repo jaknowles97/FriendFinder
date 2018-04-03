@@ -6,10 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VG Friends</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <main class="main-content">
-        <form>
+        <form method="POST">
+            <p>Name:</p>
+            <input type="text"name="username" id="name">
+            <br>
+            <p>link an image of yourself</p><br>
+            <input type="text" name="profile picture" id="img">
+            <br>
             <h3 class="question">1. I tend to enjoy online multiplayer Games over offline story driven games.</h3>
             <select id="dropdown-1">
                 <option value="1">1 (Strongly Disagree)</option>
@@ -25,7 +32,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5 (Strongly Agree)</option>   <!-- Clearly the superior choice. -->
+                <option value="5">5 (Strongly Agree)</option>   
             </select>
 
             <h3 class="question">3. I love games that require lots and lots of grinding.</h3>
@@ -100,29 +107,50 @@
                 <option value="5">5 (Strongly Agree)</option>
             </select>
             <br><br>
-            <button type="submit" id="submit"> friend</button>
+            <button type="submit" id="submit">Find Friend</button>
         </form>
+        <br>
+        <div class="results">
+            <div class="img">
+ 
+            </div>
+            <div class="name"></div>
+        </div>
     </main>
 
     <script type="text/javascript">
         document.getElementById("submit").addEventListener("click", function(event) {
-            event.preventDefault()
+            event.preventDefault();
+            // retrive their answers
             var answers = [];
             for(var i=1; i < 11; i++) {
                 var id = "dropdown-"+i;
                 var answerSet = document.getElementById(id);
                 answers.push(answerSet.options[answerSet.selectedIndex].value);
             }
-            console.log(answers);
+            // create obj for user data
+            var newUser = {
+                name: document.getElementById("name").value,
+                img: document.getElementById("img").value,
+                scores: answers
+            }
+
+ 
+            var httpRequest = new XMLHttpRequest()
+            httpRequest.onloadend = function (req, res ) {
+                var bestMatch = JSON.parse(httpRequest.response);
+                var bestMatchImg = document.createElement("img");
+                bestMatchImg.setAttribute("src", bestMatch.img);
+                document.querySelector(".img").after(bestMatchImg);
+                document.querySelector(".name").after(bestMatch.name);
+
+            }
+            httpRequest.open('POST', window.location.origin+ "/api/friends");
+            httpRequest.setRequestHeader('Content-Type', 'application/json');
+            httpRequest.send(JSON.stringify(newUser));
         });
 
-        var httpRequest = new XMLHttpRequest()
-        httpRequest.onreadystatechange = function (data) {
-        // code
-        }
-        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        httpRequest.open('POST', "/api/friends")
-        httpRequest.send(answers)
+
     </script>
 </body>
 </html>
